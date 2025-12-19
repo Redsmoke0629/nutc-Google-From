@@ -3,7 +3,7 @@
 // ==========================================
 
 // 您的 CSV 連結
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT_RX7bodysq202ReHeYKNsrJPSu3LSyCEW88-AOUp0NNDEEieZPNrGymI16Ew2P27UIKuWzJwMuDu_/pub?output=csv';
+const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSY7NZUZlhrODZPFRNQ40zm5MKqbIGiXLwwfFOP_C_Kc78c8jQi3OFFaK7CVqtgGY6p65PCn1aVRVyB/pub?output=csv';
 
 // 初始化圖表變數 (讓後面的 fetch 可以存取)
 let creatureChart, sleepChart, survivalChart, timeChart;
