@@ -42,6 +42,25 @@ body {
     border: 1px solid var(--tech-border);
 }
 
+/* 科技感頭像樣式 (新功能) */
+.tech-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--tech-border);
+    /* 預設黑白，科技冷漠感 */
+    filter: grayscale(100%) contrast(1.2);
+    transition: all 0.3s ease;
+}
+
+/* 懸停效果：恢復色彩並發光 */
+.group:hover .tech-avatar {
+    filter: grayscale(0%) contrast(1);
+    border-color: var(--tech-primary);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
 /* 霓虹文字效果 */
 .text-neon {
     text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
