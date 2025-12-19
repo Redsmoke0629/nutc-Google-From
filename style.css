@@ -1,63 +1,32 @@
-/* 引入字體 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap');
-
 :root {
     --tech-bg: #0f172a;
-    --tech-card-bg: rgba(30, 41, 59, 0.6);
     --tech-border: rgba(255, 255, 255, 0.08);
-    --tech-primary: #3b82f6; /* Blue 500 */
-    --tech-secondary: #06b6d4; /* Cyan 500 */
 }
 
-body {
-    background-color: var(--tech-bg);
-    font-family: 'Inter', 'Noto Sans TC', sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
+body { background: var(--tech-bg); font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
-/* 科技網格背景 */
 .bg-grid {
-    background-image: 
-        linear-gradient(var(--tech-border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--tech-border) 1px, transparent 1px);
+    background-image: linear-gradient(var(--tech-border) 1px, transparent 1px), 
+                      linear-gradient(90deg, var(--tech-border) 1px, transparent 1px);
     background-size: 40px 40px;
 }
 
-/* 毛玻璃卡片 */
 .glass-card {
-    background: var(--tech-card-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--tech-border);
     border-radius: 1rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.glass-header {
-    background: rgba(15, 23, 42, 0.85);
+.glass-inner { background: rgba(0, 0, 0, 0.2); border: 1px solid var(--tech-border); }
+
+.tech-emoji {
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 6px; transition: 0.3s;
 }
 
-.glass-inner {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--tech-border);
-}
-
-/* 霓虹文字效果 */
-.text-neon {
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-}
-
-/* 捲軸美化 */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #0f172a;
-}
-::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+.group:hover .tech-emoji {
+    border-color: #3b82f6; box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
 }

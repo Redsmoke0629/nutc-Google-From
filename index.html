@@ -3,237 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>班級分析儀表板 // Tech Edition</title>
-    
+    <title>班級數據儀表板 // Tech Elite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-tech-base text-slate-200 selection:bg-blue-500 selection:text-white">
+<body class="bg-tech-base text-slate-200 bg-grid">
 
     <header class="fixed top-0 w-full z-50 glass-header border-b border-white/5 backdrop-blur-md">
         <div class="max-w-7xl mx-auto py-4 px-6 flex justify-between items-center">
             <h1 class="text-xl font-bold tracking-tight flex items-center gap-2 font-mono">
-                <i data-lucide="cpu" class="text-blue-500 w-5 h-5"></i>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">ANALYTICS DASHBOARD</span>
+                <i data-lucide="activity" class="text-blue-500"></i>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">DATA_ENGINE_v2</span>
             </h1>
-            <div class="hidden md:flex items-center gap-2 text-[10px] font-mono text-slate-500 border border-slate-700 px-2 py-1 rounded">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                SYSTEM ONLINE
+            <div id="status-tag" class="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 px-2 py-1 rounded bg-emerald-500/10 animate-pulse">
+                SYSTEM_LIVE
             </div>
         </div>
     </header>
 
-    <section class="min-h-screen flex flex-col items-center justify-center p-6 pt-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-
-        <div class="max-w-5xl w-full glass-card p-8 md:p-12 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-start mb-10 border-l-4 border-blue-500 pl-6">
-                <div>
-                    <span class="text-blue-400 font-mono text-xs tracking-widest uppercase">/ Personality_Metrics</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-1">行為特徵分析</h2>
+    <main class="pt-24 pb-12 px-6">
+        <section class="max-w-6xl mx-auto mb-12">
+            <div class="glass-card p-8">
+                <div class="border-l-4 border-blue-500 pl-4 mb-8">
+                    <h2 class="text-2xl font-bold font-mono">/ BEHAVIOR_RADAR</h2>
+                    <p class="text-slate-500 text-sm">樣本總數: <span id="sample-count" class="text-white">--</span></p>
                 </div>
-                <div class="mt-4 md:mt-0 flex items-center gap-2 bg-slate-800/50 border border-white/10 px-4 py-2 rounded-lg">
-                    <span class="text-slate-400 text-sm">截止日風格：</span>
-                    <span class="text-cyan-400 font-mono font-bold">前一天衝刺派 ⚡</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="h-[350px] bg-slate-900/40 rounded-xl p-4 border border-white/5">
+                        <canvas id="creatureChart"></canvas>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="glass-inner p-6 rounded-xl">
+                            <h3 class="text-blue-400 font-bold mb-4 flex items-center gap-2 font-mono text-sm"><i data-lucide="database"></i> ATTRIBUTE_LOG</h3>
+                            <ul class="space-y-4 font-mono text-xs">
+                                <li class="flex items-center justify-between border-b border-white/5 pb-2 group">
+                                    <div class="flex items-center gap-3"><span class="tech-emoji">🦉</span> [TYPE: OWL]</div>
+                                    <span class="text-slate-400">夜行性核心</span>
+                                </li>
+                                <li class="flex items-center justify-between border-b border-white/5 pb-2 group">
+                                    <div class="flex items-center gap-3"><span class="tech-emoji">🦥</span> [TYPE: SLOTH]</div>
+                                    <span class="text-slate-400">節能處理器</span>
+                                </li>
+                                <li class="flex items-center justify-between border-b border-white/5 pb-2 group">
+                                    <div class="flex items-center gap-3"><span class="tech-emoji">🐹</span> [TYPE: HAMSTER]</div>
+                                    <span class="text-slate-400">高頻緩存</span>
+                                </li>
+                                <li class="flex items-center justify-between border-b border-white/5 pb-2 group">
+                                    <div class="flex items-center gap-3"><span class="tech-emoji">🐬</span> [TYPE: DOLPHIN]</div>
+                                    <span class="text-slate-400">雙工休眠</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="relative h-[350px] w-full bg-slate-900/40 rounded-xl p-4 border border-white/5 flex items-center justify-center">
-                    <canvas id="creatureChart"></canvas>
-                </div>
+        <section class="max-w-6xl mx-auto mb-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="glass-card p-8 lg:col-span-1">
+                <h2 class="text-blue-400 font-mono text-xs uppercase mb-2">Sleep_Global_Avg</h2>
+                <div id="avg-sleep" class="text-4xl font-bold text-white mb-6">-- <span class="text-sm font-normal text-slate-500">Hrs</span></div>
                 <div class="space-y-4">
-                    <div class="glass-inner p-6 rounded-xl">
-                        <h3 class="font-bold text-lg text-blue-400 mb-4 flex items-center gap-2 font-mono">
-                            <i data-lucide="scan-face"></i>
-                            Attribute_Log
-                        </h3>
-                        <ul class="space-y-3 font-mono text-sm">
-                            <li class="flex items-center justify-between text-slate-400 border-b border-white/5 pb-2">
-                                <span>[TYPE: OWL]</span> <span class="text-slate-200">越晚越清醒</span>
-                            </li>
-                            <li class="flex items-center justify-between text-slate-400 border-b border-white/5 pb-2">
-                                <span>[TYPE: SLOTH]</span> <span class="text-slate-200">優化效率 (慢慢來)</span>
-                            </li>
-                            <li class="flex items-center justify-between text-slate-400 border-b border-white/5 pb-2">
-                                <span>[TYPE: HAMSTER]</span> <span class="text-slate-200">高頻運作中</span>
-                            </li>
-                            <li class="flex items-center justify-between text-slate-400 border-b border-white/5 pb-2">
-                                <span>[TYPE: DOLPHIN]</span> <span class="text-slate-200">低休眠模式</span>
-                            </li>
-                        </ul>
+                    <div class="flex justify-between text-[10px] font-mono mb-1"><span>RECOVERY_CAPACITY</span><span id="energy-val">--%</span></div>
+                    <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="energy-bar" class="h-full bg-cyan-500 shadow-[0_0_10px_cyan] transition-all duration-1000" style="width: 0%"></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="min-h-screen flex flex-col items-center justify-center p-6 border-t border-white/5 bg-slate-900/50">
-        <div class="max-w-6xl w-full">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-8">
-                <div>
-                    <span class="text-blue-500 font-mono text-xs tracking-wider">SECTION B // STATUS_MONITOR</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">睡眠循環監測</h2>
-                </div>
-                <div class="text-right mt-4 md:mt-0 font-mono">
-                    <div class="text-3xl font-bold text-cyan-400">01:30 <span class="text-sm text-slate-500">AM</span></div>
-                    <div class="text-slate-500 text-xs uppercase">Avg. Sleep Time</div>
-                </div>
+            <div class="glass-card p-8 lg:col-span-2">
+                <div class="h-[250px] w-full"><canvas id="sleepChart"></canvas></div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-1 space-y-6">
-                    <div class="glass-card p-6">
-                        <div class="flex justify-between text-slate-300 mb-2 font-mono text-xs">
-                            <span>ENERGY_CAPACITY</span>
-                            <span class="text-blue-400">35%</span>
-                        </div>
-                        <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="width: 35%"></div>
-                        </div>
-                        <p class="text-[10px] text-slate-500 mt-2 text-right">SYSTEM WARNING: LOW BATTERY</p>
-                    </div>
-
-                    <div class="glass-card p-6">
-                        <h3 class="text-blue-400 font-bold mb-4 flex items-center gap-2 text-sm font-mono">
-                            <i data-lucide="zap"></i> WAKE_UP_STATUS
-                        </h3>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-600 text-xs">Offline</span>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-6 bg-cyan-500 shadow-[0_0_8px_cyan]"></div>
-                                <div class="w-2 h-6 bg-cyan-500 shadow-[0_0_8px_cyan]"></div>
-                                <div class="w-2 h-6 bg-slate-800"></div>
-                                <div class="w-2 h-6 bg-slate-800"></div>
-                                <div class="w-2 h-6 bg-slate-800"></div>
-                            </div>
-                            <span class="text-slate-600 text-xs">Active</span>
-                        </div>
-                        <div class="text-center mt-3 text-white font-mono text-lg">LEVEL 2</div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-2 glass-card p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-white font-bold flex items-center gap-2 text-sm font-mono">
-                            <i data-lucide="bar-chart"></i> DATA_LOG (14 DAYS)
-                        </h3>
-                    </div>
-                    <div class="relative h-[300px] w-full">
-                        <canvas id="sleepChart"></canvas>
-                    </div>
-                </div>
+        <section class="max-w-6xl mx-auto">
+            <div class="glass-card p-8 border-t-2 border-blue-500">
+                <h2 class="text-center font-mono font-bold text-xl mb-8 tracking-widest">RESOURCE_CONSUMPTION</h2>
+                <div class="h-[400px] w-full"><canvas id="survivalChart"></canvas></div>
             </div>
-        </div>
-    </section>
-
-    <section class="min-h-screen flex flex-col items-center justify-center p-6 border-t border-white/5">
-        <div class="max-w-4xl w-full glass-card p-8 border-t-4 border-blue-500">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-white tracking-tight">
-                    RESOURCE CONSUMPTION
-                </h2>
-                <p class="text-slate-400 mt-2 font-mono text-xs uppercase">/// Survival Items Analysis ///</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="p-4 rounded-lg bg-slate-800/50 border border-white/5 text-center">
-                    <h4 class="text-slate-500 text-xs font-mono mb-1">SUGAR_INTAKE</h4>
-                    <div class="text-2xl font-bold text-white">5 <span class="text-xs text-slate-500">units/wk</span></div>
-                </div>
-                <div class="p-4 rounded-lg bg-slate-800/50 border border-blue-500/30 text-center shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-                    <h4 class="text-blue-400 text-xs font-mono mb-1">CAFFEINE</h4>
-                    <div class="text-2xl font-bold text-white">12 <span class="text-xs text-slate-500">units/wk</span></div>
-                </div>
-                <div class="p-4 rounded-lg bg-slate-800/50 border border-white/5 text-center">
-                    <h4 class="text-slate-500 text-xs font-mono mb-1">TAKEOUT</h4>
-                    <div class="text-2xl font-bold text-white">14 <span class="text-xs text-slate-500">times/wk</span></div>
-                </div>
-            </div>
-
-            <div class="relative h-[300px] w-full">
-                <canvas id="survivalChart"></canvas>
-            </div>
-
-            <div class="mt-8 bg-slate-900 border border-l-4 border-slate-700 border-l-green-500 p-4 font-mono text-xs text-slate-400">
-                <span class="text-green-500">root@user:~$</span> log entry: user selected "Peer Support" but efficiency is lower than "Caffeine".
-            </div>
-        </div>
-    </section>
-
-    <section class="min-h-screen flex flex-col items-center justify-center p-6 border-t border-white/5 bg-gradient-to-b from-[#0f172a] to-[#0b0f19]">
-        <div class="max-w-6xl w-full">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-600 mb-2 font-inter">
-                    TIME_LOSS
-                </h2>
-                <p class="text-blue-500 font-mono text-xs tracking-[0.3em] uppercase">
-                    Daily Cycle Estimation
-                </p>
-            </div>
-
-            <div class="flex flex-col md:flex-row gap-12 items-center justify-center">
-                
-                <div class="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] flex-shrink-0">
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                        <div class="text-center">
-                            <span class="block text-4xl font-bold text-slate-700 font-mono">24H</span>
-                        </div>
-                    </div>
-                    <div class="w-full h-full relative z-10 filter drop-shadow-[0_0_20px_rgba(59,130,246,0.2)]">
-                        <canvas id="timeChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="glass-card p-8 max-w-sm w-full">
-                    <h3 class="text-sm font-bold mb-6 text-slate-300 border-b border-white/10 pb-2 font-mono uppercase">Allocation Detail</h3>
-                    <ul class="space-y-4 font-mono text-sm">
-                        <li class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-sm bg-blue-500"></span>
-                                <span class="text-slate-400">Study / Class</span>
-                            </div>
-                            <span class="text-white">6 H</span>
-                        </li>
-                        <li class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-sm bg-cyan-400"></span>
-                                <span class="text-slate-400">Work / Club</span>
-                            </div>
-                            <span class="text-white">3 H</span>
-                        </li>
-                        <li class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-sm bg-indigo-500"></span>
-                                <span class="text-slate-400">Entertainment</span>
-                            </div>
-                            <span class="text-white">8 H</span>
-                        </li>
-                        <li class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-sm bg-slate-700"></span>
-                                <span class="text-slate-400">Sleep</span>
-                            </div>
-                            <span class="text-white">7 H</span>
-                        </li>
-                    </ul>
-                    <p class="mt-6 text-[10px] text-slate-600 font-mono italic">
-                        * ALERT: Entertainment duration exceeds Study duration.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/5 py-8 text-center font-mono text-[10px] text-slate-600">
-        <p>© 2025 LIFE_DASHBOARD_GENERATOR v2.0.1</p>
-        <p>SYSTEM OUTPUT FOR ENTERTAINMENT PURPOSES ONLY.</p>
-    </footer>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
