@@ -1,71 +1,63 @@
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            overflow-x: hidden;
-        }
+/* 引入字體 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap');
 
-        /* 區塊 1: 普普風 (Pop Art) - Section A */
-        .theme-pop {
-            background-color: #fff1f2;
-            background-image: radial-gradient(#fb7185 2px, transparent 2px);
-            background-size: 30px 30px;
-        }
-        .font-pop {
-            font-family: 'Zen Maru Gothic', sans-serif;
-        }
+:root {
+    --tech-bg: #0f172a;
+    --tech-card-bg: rgba(30, 41, 59, 0.6);
+    --tech-border: rgba(255, 255, 255, 0.08);
+    --tech-primary: #3b82f6; /* Blue 500 */
+    --tech-secondary: #06b6d4; /* Cyan 500 */
+}
 
-        /* 區塊 2: 深夜模式 (Night/Neon) - Section B */
-        .theme-night {
-            background: linear-gradient(to bottom, #0f172a, #1e1b4b);
-            color: #e2e8f0;
-        }
-        .neon-text {
-            text-shadow: 0 0 10px #818cf8, 0 0 20px #818cf8;
-        }
-        .energy-bar-bg {
-            background: #1e293b;
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
-        }
-        .energy-bar-fill {
-            background: linear-gradient(90deg, #ef4444 0%, #eab308 50%, #22d3ee 100%);
-            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
-            transition: width 1.5s ease-in-out;
-        }
+body {
+    background-color: var(--tech-bg);
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
 
-        /* 區塊 3: 像素電玩風 (RPG/8-bit) - Section C */
-        .theme-game {
-            background-color: #fcd34d;
-            border-top: 8px solid #000;
-            border-bottom: 8px solid #000;
-        }
-        .font-pixel {
-            font-family: 'Press Start 2P', cursive;
-        }
-        .pixel-box {
-            box-shadow: 8px 8px 0px 0px #000000;
-            border: 4px solid #000;
-        }
-        .pixel-btn {
-            background-color: #fff;
-            border: 4px solid #000;
-            box-shadow: 4px 4px 0px 0px #000000;
-            transition: all 0.1s;
-        }
-        .pixel-btn:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px 0px #000000;
-        }
+/* 科技網格背景 */
+.bg-grid {
+    background-image: 
+        linear-gradient(var(--tech-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--tech-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
 
-        /* 區塊 4: 蒸汽波 (Vaporwave) - Section D */
-        .theme-vapor {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-        }
-        .font-vapor {
-            font-family: 'Righteous', cursive;
-            letter-spacing: 2px;
-        }
+/* 毛玻璃卡片 */
+.glass-card {
+    background: var(--tech-card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--tech-border);
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-header {
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.glass-inner {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--tech-border);
+}
+
+/* 霓虹文字效果 */
+.text-neon {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* 捲軸美化 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
