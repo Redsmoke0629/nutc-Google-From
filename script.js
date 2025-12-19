@@ -22,6 +22,12 @@ fetch(csvUrl)
         console.error('❌ 系統連線失敗 (Connection Failed):', error);
     });
 
+// (選用) 範例解析函式：您可以之後在這裡把 csvRawText 轉成陣列，然後更新圖表
+function processData(csvText) {
+    // 範例：chart.data.datasets[0].data = [新數據...];
+    // chart.update();
+}
+
 
 // ==========================================
 // PART 2: 視覺化儀表板設定 (Visualization Config)
